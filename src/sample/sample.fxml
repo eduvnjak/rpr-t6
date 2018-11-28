@@ -84,8 +84,8 @@
             <Label text="Kontakt adresa: " GridPane.columnIndex="0" />
             <Label text="Kontakt telefon: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <Label text="Email adresa: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-             <TextField GridPane.columnIndex="1" />
-             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <TextField fx:id="adressField" GridPane.columnIndex="1" />
+             <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
              <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
          <columnConstraints>

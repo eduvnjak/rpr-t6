@@ -13,6 +13,9 @@ import static java.lang.Character.isLetter;
 public class Controller {
     public TextField firstNameField;
     public ComboBox mjestoRodjenjaField;
+    public TextField adressField;
+    public TextField phoneNumberField;
+    private boolean phoneNumberValid;
     private boolean firstNameValid;
     public TextField lastNameField;
     private boolean lastNameValid;
@@ -34,11 +37,19 @@ public class Controller {
         }
         return true;
     }
+    private boolean validPhoneNumber(String n){
+        if(n.length() == 0) return true;
+        for (int i = 0; i < n.length(); i++) {
+            if(!isDigit(n.charAt(i))) return false;
+        }
+        return true;
+    }
     @FXML
     public void initialize(){
         firstNameValid = false;
         lastNameValid = false;
         indexNumberValid = false;
+        phoneNumberValid = true;
         //emailValid = false;
         firstNameField.getStyleClass().add("poljeNijeIspravno");
         lastNameField.getStyleClass().add("poljeNijeIspravno");
@@ -86,6 +97,20 @@ public class Controller {
                 }
             }
         });
+        phoneNumberField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (validPhoneNumber(n)) {
+                    phoneNumberField.getStyleClass().removeAll("poljeNijeIspravno");
+                    phoneNumberField.getStyleClass().add("poljeIspravno");
+                    phoneNumberValid = true;
+                } else {
+                    phoneNumberField.getStyleClass().removeAll("poljeIspravno");
+                    phoneNumberField.getStyleClass().add("poljeNijeIspravno");
+                    phoneNumberValid = false;
+                }
+            }
+        });
         /*
         emailField.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -103,7 +128,8 @@ public class Controller {
     }
     public void potvrdi(){
         if(firstNameValid && lastNameValid && indexNumberValid){
-            System.out.println(firstNameField.getText() + " " + lastNameField.getText() + " " + indexNumberField.getText() + " " + mjestoRodjenjaField.getEditor().getText());
+            System.out.println(firstNameField.getText() + " " + lastNameField.getText() + " " + indexNumberField.getText()
+                    + " " + adressField.getText() + " "+ phoneNumberField.getText() + " " + mjestoRodjenjaField.getEditor().getText());
         }
     }
 }
