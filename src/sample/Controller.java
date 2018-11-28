@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import static java.lang.Character.isDigit;
@@ -11,6 +12,7 @@ import static java.lang.Character.isLetter;
 
 public class Controller {
     public TextField firstNameField;
+    public ComboBox mjestoRodjenjaField;
     private boolean firstNameValid;
     public TextField lastNameField;
     private boolean lastNameValid;
@@ -101,7 +103,7 @@ public class Controller {
     }
     public void potvrdi(){
         if(firstNameValid && lastNameValid && indexNumberValid){
-            System.out.println(firstNameField.getText() + " " + lastNameField.getText() + " " + indexNumberField.getText());
+            System.out.println(firstNameField.getText() + " " + lastNameField.getText() + " " + indexNumberField.getText() + " " + mjestoRodjenjaField.getEditor().getText());
         }
     }
 }
