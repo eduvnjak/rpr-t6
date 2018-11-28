@@ -67,7 +67,7 @@
                      </FXCollections>
                  </items>
              </ComboBox>
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <columnConstraints>
             <ColumnConstraints />

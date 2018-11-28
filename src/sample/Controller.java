@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
 
 import static java.lang.Character.isDigit;
@@ -28,6 +30,7 @@ public class Controller {
     public RadioButton redovanBtn;
     public RadioButton samofinansirajuciBtn;
     public Button okBtn;
+    public DatePicker date;
     private boolean phoneNumberValid;
     private boolean firstNameValid;
     public TextField lastNameField;
@@ -55,6 +58,12 @@ public class Controller {
         for (int i = 0; i < n.length(); i++) {
             if(!isDigit(n.charAt(i))) return false;
         }
+        return true;
+    }
+    private boolean validDate(){
+        if(date.getValue() == null) return false;
+        LocalDate d = date.getValue();
+
         return true;
     }
     @FXML
@@ -124,7 +133,9 @@ public class Controller {
                     phoneNumberValid = false;
                 }
             }
-        });/*
+        });
+
+        /*
         emailField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> obs, String o, String n) {
@@ -140,7 +151,7 @@ public class Controller {
         });*/
     }
     public void potvrdi(){
-        if(firstNameValid && lastNameValid && indexNumberValid && phoneNumberValid && odsjekChoiceBox.getValue() != null && godinaChoiceBox.getValue() != null && ciklusChoiceBox.getValue() != null){
+        if(validDate() && firstNameValid && lastNameValid && indexNumberValid && phoneNumberValid && odsjekChoiceBox.getValue() != null && godinaChoiceBox.getValue() != null && ciklusChoiceBox.getValue() != null){
             System.out.println(firstNameField.getText() + " " + lastNameField.getText() + " " + indexNumberField.getText()
                     + " " + adressField.getText() + " "+ phoneNumberField.getText() + " " + mjestoRodjenjaField.getEditor().getText());
             System.out.println(odsjekChoiceBox.getValue() + " " + godinaChoiceBox.getValue() + " " + ciklusChoiceBox.getValue());
