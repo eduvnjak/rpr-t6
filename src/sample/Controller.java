@@ -3,11 +3,18 @@ package sample;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
+
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class Controller {
     public TextField firstNameField;
@@ -20,6 +27,7 @@ public class Controller {
     public Button potvrdiBtn;
     public RadioButton redovanBtn;
     public RadioButton samofinansirajuciBtn;
+    public Button okBtn;
     private boolean phoneNumberValid;
     private boolean firstNameValid;
     public TextField lastNameField;
@@ -116,8 +124,7 @@ public class Controller {
                     phoneNumberValid = false;
                 }
             }
-        });
-        /*
+        });/*
         emailField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> obs, String o, String n) {
@@ -146,6 +153,16 @@ public class Controller {
             stage.close();
         }else{
             //izbaci error
+            Parent root = null;
+            try {
+                Stage myStage = new Stage();
+                root = FXMLLoader.load(getClass().getResource("greska.fxml"));
+                myStage.setTitle("Greška");
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE,USE_COMPUTED_SIZE));
+                myStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
