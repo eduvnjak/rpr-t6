@@ -3,9 +3,8 @@ package sample;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
@@ -15,6 +14,12 @@ public class Controller {
     public ComboBox mjestoRodjenjaField;
     public TextField adressField;
     public TextField phoneNumberField;
+    public ChoiceBox odsjekChoiceBox;
+    public ChoiceBox godinaChoiceBox;
+    public ChoiceBox ciklusChoiceBox;
+    public Button potvrdiBtn;
+    public RadioButton redovanBtn;
+    public RadioButton samofinansirajuciBtn;
     private boolean phoneNumberValid;
     private boolean firstNameValid;
     public TextField lastNameField;
@@ -51,6 +56,7 @@ public class Controller {
         indexNumberValid = false;
         phoneNumberValid = true;
         //emailValid = false;
+        phoneNumberField.getStyleClass().add("poljeIspravno");
         firstNameField.getStyleClass().add("poljeNijeIspravno");
         lastNameField.getStyleClass().add("poljeNijeIspravno");
         indexNumberField.getStyleClass().add("poljeNijeIspravno");
@@ -127,9 +133,19 @@ public class Controller {
         });*/
     }
     public void potvrdi(){
-        if(firstNameValid && lastNameValid && indexNumberValid){
+        if(firstNameValid && lastNameValid && indexNumberValid && phoneNumberValid && odsjekChoiceBox.getValue() != null && godinaChoiceBox.getValue() != null && ciklusChoiceBox.getValue() != null){
             System.out.println(firstNameField.getText() + " " + lastNameField.getText() + " " + indexNumberField.getText()
                     + " " + adressField.getText() + " "+ phoneNumberField.getText() + " " + mjestoRodjenjaField.getEditor().getText());
+            System.out.println(odsjekChoiceBox.getValue() + " " + godinaChoiceBox.getValue() + " " + ciklusChoiceBox.getValue());
+            if(redovanBtn.isPressed()){
+                System.out.println(redovanBtn.getText());
+            }else{
+                System.out.println(samofinansirajuciBtn.getText());
+            }
+            Stage stage = (Stage) potvrdiBtn.getScene().getWindow();
+            stage.close();
+        }else{
+            //izbaci error
         }
     }
 }
