@@ -55,7 +55,8 @@
             <Label text="JMBG: " GridPane.columnIndex="0" />
             <Label text="Datum rođenja: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <Label text="Mjesto rođenja: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-             <TextField GridPane.columnIndex="1" />
+             <TextField fx:id="jmbgField"  GridPane.columnIndex="1" />
+             <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
              <ComboBox fx:id="mjestoRodjenjaField" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                  <items>
                      <FXCollections fx:factory="observableArrayList">
@@ -67,7 +68,6 @@
                      </FXCollections>
                  </items>
              </ComboBox>
-            <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <columnConstraints>
             <ColumnConstraints />
